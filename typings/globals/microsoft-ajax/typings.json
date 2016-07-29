@@ -1,0 +1,11 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "https://raw.githubusercontent.com/pjmagee/DefinitelyTyped/master/microsoft-ajax/microsoft.ajax.d.ts",
+    "raw": "registry:npm/microsoft-ajax#3.0.0+20160211003958",
+    "main": "dist/microsoft.ajax.d.ts",
+    "global": false,
+    "name": "microsoft-ajax",
+    "type": "typings"
+  }
+}

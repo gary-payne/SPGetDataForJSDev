@@ -15,7 +15,7 @@ import tslint from 'gulp-tslint';
 import Config  from'./gulpfile.config';
 let config = new Config();
 
-gulp.task("test", function () {
+gulp.task("test", () => {
     console.log("Yes");
 });
 
@@ -23,10 +23,10 @@ gulp.task("test", function () {
  * Lint all custom TypeScript files.
  */
 gulp.task('lint', () => {
-    return gulp.src([config.allTypeScript])
+    return gulp.src([config.allTypeScript, config.allTypeScriptJSX])
             //.pipe(print(function(filepath) { return `  ..linting ${filepath}`; }))
-            .pipe(tslint())
-            .pipe(tslint.report('prose'));
+            .pipe(tslint({formatter: "verbose"}))
+            .pipe(tslint.report());
 });
 
 /*
@@ -36,12 +36,12 @@ gulp.task('lint', () => {
 gulp.task('includeLibs', () => {
     return gulp.src([
             config.allLibraries,
-            'node_modules/d3/build/d3.js',
             'node_modules/office-ui-fabric/dist/css/fabric.css',
             'node_modules/office-ui-fabric/dist/css/fabric.components.css',
             'node_modules/react/dist/react.js',
             'node_modules/react-dom/dist/react-dom.js',
             'node_modules/react-router/umd/ReactRouter.js',
+            'node_modules/sp-pnp-js/dist/pnp.js',
             'node_modules/spscript/dist/v2/spscript.js',
             'node_modules/whatwg-fetch/fetch.js'])
         //.pipe(print()) //Use to write names of all included files to the console during running of this task
@@ -67,7 +67,24 @@ gulp.task('compile', ['lint'], () => {
 });
 
 /*
- *
+ * Bundle the react-addons-update file into a JS library for upload
+ * */
+gulp.task('packageReactAddons', () => {
+
+    let bundler =  browserify({
+            entries: 'node_modules/react/lib/update.js',
+            debug: false,
+            standalone: 'React_Addons_Update'
+        });
+
+    return bundler.bundle() //start buindling
+        .on('error', console.error.bind(console))
+        .pipe(source('react_addons_update.js')) // Pass desired output file name to vinyl-source-stream
+        .pipe(gulp.dest(config.librariesOutputPath)); // Destination for the bundle
+})
+
+/*
+ * Bundle the compiled JS into a single file for upload
  * */
 gulp.task('package', ['compile'], () => {
 
@@ -75,9 +92,9 @@ gulp.task('package', ['compile'], () => {
             entries: config.rootJS,
             debug: true //This provides sourcemapping
         })  //Initialising browserify
-        .external(['d3', 'react', 'react-dom', 'react-router', 'SPScript']); //Removing the external libraries which will be available as <script> tags in the client page  
+        .external(['react', 'react-addons-update', 'react-dom', 'react-router', 'sp-pnp-js', 'SPScript']); //Removing the external libraries which will be available as <script> tags in the client page  
 
-    bundler.bundle() //start buindling
+    return bundler.bundle() //start buindling
         .on('error', console.error.bind(console))
         .pipe(exorcist(config.distOutputPath + '/' + config.bundleFile + '.map')) //Extract the sourcemap to a seprate file
         .pipe(source(config.bundleFile)) // Pass desired output file name to vinyl-source-stream
@@ -88,7 +105,7 @@ gulp.task('package', ['compile'], () => {
  * Upload the libraries to the SharePoint site
  * NOTE - the username and password must be XML encoded, otherwise the spsave() call will fail with "invalid STS request"
  */
-gulp.task('uploadLibs', ['includeLibs'], function () {
+gulp.task('uploadLibs', ['includeLibs', 'packageReactAddons'], function () {
     const settings = JSON.parse(fs.readFileSync("../settings.json"));    
     return gulp.src(config.libsAndFilesToUpload)
         .pipe(print())

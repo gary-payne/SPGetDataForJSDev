@@ -14,7 +14,7 @@ var GulpConfig = (function () {
         this.distOutputPath = this.dist + '/js';
         this.libsAndFilesToUpload = [this.librariesOutputPath + '/*.css',this.librariesOutputPath + '/*.js'];        
 
-        this.bundleFile = 'bundle-ReactRoadmap.js';
+        this.bundleFile = 'bundle-spgetdataforjsdev.js';
         this.distFilePaths = [this.distOutputPath + '/' + this.bundleFile, this.distOutputPath + '/' + this.bundleFile + '.map', this.dist + '/html/*.html'];
     }
     return gulpConfig;

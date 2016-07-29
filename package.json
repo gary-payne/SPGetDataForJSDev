@@ -7,7 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": {
+    "name": "Gary Payne",
+    "url": "https://sharethelearning.blogspot.co.nz/"
+  },
   "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.11.4",
@@ -32,13 +35,29 @@
     "gulp-watch": "^4.3.9",
     "office-ui-fabric": "^2.6.1",
     "react": "^15.2.1",
+    "react-addons-update": "^15.2.1",
     "react-dom": "^15.2.1",
     "react-loader": "^2.4.0",
     "react-router": "^2.6.0",
     "sp-pnp-js": "^1.0.3",
+    "spscript": "^1.4.3",
     "systemjs": "^0.19.35",
+    "tslint": "^3.14.0",
     "typings": "^1.3.2",
     "vinyl-source-stream": "^1.1.0",
     "whatwg-fetch": "^1.0.0"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browserify-shim": {
+    "react": "global:React",
+    "react-addons-update": "global:React_Addons_Update",
+    "react-dom": "global:ReactDOM",
+    "react-router": "global:ReactRouter",
+    "sp-pnp-js": "global:$pnp",
+    "SPScript": "global:SPScript"
   }
 }
