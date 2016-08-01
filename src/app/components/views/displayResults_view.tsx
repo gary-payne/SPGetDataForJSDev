@@ -5,7 +5,7 @@ class DisplayResultsView extends React.Component<any, any> {
         return (
             <div>
                 <div>{this.props.message}</div>
-                <textarea readOnly value={JSON.stringify(this.props.data)} />
+                <textarea readOnly rows="10" cols="125" value={JSON.stringify(this.props.data)} />
             </div>
         );
     }

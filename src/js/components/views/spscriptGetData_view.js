@@ -11,7 +11,7 @@ var SPScriptGetDataView = (function (_super) {
         _super.apply(this, arguments);
     }
     SPScriptGetDataView.prototype.render = function () {
-        return (React.createElement("div", null, React.createElement("button", {onClick: this.props.getListItems}, "Get list items (SPScript)")));
+        return (React.createElement("div", null, React.createElement("button", {type: "button", onClick: this.props.getListItems}, "Get list items"), React.createElement("button", {type: "button", onClick: this.props.getProfile}, "Get profile")));
     };
     return SPScriptGetDataView;
 }(React.Component));

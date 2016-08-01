@@ -11,7 +11,7 @@ var DisplayResultsView = (function (_super) {
         _super.apply(this, arguments);
     }
     DisplayResultsView.prototype.render = function () {
-        return (React.createElement("div", null, React.createElement("div", null, this.props.message), React.createElement("textarea", {readOnly: true, value: JSON.stringify(this.props.data)})));
+        return (React.createElement("div", null, React.createElement("div", null, this.props.message), React.createElement("textarea", {readOnly: true, rows: "10", cols: "125", value: JSON.stringify(this.props.data)})));
     };
     return DisplayResultsView;
 }(React.Component));
