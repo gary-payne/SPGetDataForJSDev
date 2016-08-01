@@ -6,7 +6,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var React = require("react");
 var update = require("react-addons-update");
-var SPScriptGetData_View_1 = require("../views/SPScriptGetData_View");
+var PnPGetData_View_1 = require("../views/PnPGetData_View");
 var DisplayResults_1 = require("./DisplayResults");
 ;
 ;
@@ -28,24 +28,18 @@ var SPScriptGetData = (function (_super) {
         };
     }
     SPScriptGetData.prototype.componentDidMount = function () {
-        try {
-            var newState = update(this.state, {
-                message: { $set: "Success!" }
-            });
-            this.setState(newState);
-        }
-        catch (e) {
-            console.log("Error setting state: " + e.message);
-            this.setState({ data: [], message: "Success from exception block" });
-        }
+        var newState = update(this.state, {
+            message: { $set: "Success!" }
+        });
+        this.setState(newState);
     };
     SPScriptGetData.prototype.render = function () {
         console.log("SPScriptGetData render");
-        return (React.createElement("div", null, React.createElement(SPScriptGetData_View_1.default, {getListItems: this.getItemsFromList}), React.createElement(DisplayResults_1.default, {data: this.state.data, message: this.state.message})));
+        return (React.createElement("div", null, React.createElement(PnPGetData_View_1.default, {getListItems: this.getItemsFromList}), React.createElement(DisplayResults_1.default, {data: this.state.data, message: this.state.message})));
     };
     return SPScriptGetData;
 }(React.Component));
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = SPScriptGetData;
 
-//# sourceMappingURL=spscriptGetData.js.map
+//# sourceMappingURL=pnpGetData.js.map

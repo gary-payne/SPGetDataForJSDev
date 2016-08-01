@@ -2,9 +2,11 @@
 
 import gulp from "gulp";
 import browserify from 'browserify';
+import browserSync from 'browser-sync';
 import debug from "gulp-debug";
 import exorcist from 'exorcist';
 import fs from 'fs';
+import liveServer from 'gulp-live-server';
 import print from "gulp-print";
 import source from 'vinyl-source-stream';
 import sourcemaps from'gulp-sourcemaps';
@@ -98,7 +100,8 @@ gulp.task('package', ['compile'], () => {
         .on('error', console.error.bind(console))
         .pipe(exorcist(config.distOutputPath + '/' + config.bundleFile + '.map')) //Extract the sourcemap to a seprate file
         .pipe(source(config.bundleFile)) // Pass desired output file name to vinyl-source-stream
-        .pipe(gulp.dest(config.distOutputPath)); // Destination for the bundle
+        .pipe(gulp.dest(config.distOutputPath)) // Destination for the bundle
+        .pipe(browserSync.stream()); //Notify browsersync of the change
 })
 
 /*
@@ -134,3 +137,29 @@ gulp.task('upload', ['package'], () => {
             notification: true
         }));
 })
+
+/*
+gulp.task('html', function() {
+    gulp.src(config.src + '/index.html')
+        .pipe(gulp.dest(config.dist))
+        .pipe(browserSync.stream());
+});
+*/
+gulp.task('live-server', function() {
+    liveServer.static(config.dist, config.devserve.proxy.port).start();
+});
+gulp.task('serve', ['live-server'], function() {
+    browserSync.init(
+        null, {
+            proxy: config.devserve.protocol + '://' + config.devserve.host + ':' + config.devserve.proxy.port,
+            port: config.devserve.port
+        }
+    );
+});
+gulp.task('watch', function(){
+    gulp.watch(config.src + '/**/*.tsx', ['package']);
+});
+gulp.task('local', function () {
+    gulp.start('serve');
+    gulp.start('watch');
+});

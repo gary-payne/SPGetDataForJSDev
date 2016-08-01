@@ -16,6 +16,16 @@ var GulpConfig = (function () {
 
         this.bundleFile = 'bundle-spgetdataforjsdev.js';
         this.distFilePaths = [this.distOutputPath + '/' + this.bundleFile, this.distOutputPath + '/' + this.bundleFile + '.map', this.dist + '/html/*.html'];
+
+        this.devserve = {
+            protocol: 'http',
+            host: 'localhost',
+            port: '9090',
+            proxy: {
+                port: '7777'
+            }
+        };
+
     }
     return gulpConfig;
 })();

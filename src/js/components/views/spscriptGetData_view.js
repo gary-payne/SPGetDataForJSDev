@@ -11,7 +11,7 @@ var SPScriptGetDataView = (function (_super) {
         _super.apply(this, arguments);
     }
     SPScriptGetDataView.prototype.render = function () {
-        return (React.createElement("div", null, React.createElement("div", null, this.props.message), React.createElement("textarea", {readOnly: true, value: JSON.stringify(this.props.data)})));
+        return (React.createElement("div", null, React.createElement("button", {onClick: this.props.getListItems}, "Get list items (SPScript)")));
     };
     return SPScriptGetDataView;
 }(React.Component));

@@ -7,6 +7,7 @@ export default function(props) {
     <div className="spgetdata_navigation">
         <ul>
             <li><Link to="/">Home</Link></li>
+            <li><Link to="pnp">PnP</Link></li>
         </ul>
     </div>
     );

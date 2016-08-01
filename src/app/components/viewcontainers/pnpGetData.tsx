@@ -1,7 +1,6 @@
 import * as React from "react";
 let update = require("react-addons-update");
-import { RestDao } from "SPScript"; //Need to add custom index.d.ts to SPScript module folder to resolve this name!
-import SPScriptGetDataView from "../views/SPScriptGetData_View";
+import PnpDataView from "../views/PnPGetData_View";
 import DisplayResults from "./DisplayResults";
 
 interface IProps {};
@@ -19,15 +18,10 @@ class SPScriptGetData extends React.Component<IProps, IState> {
     }
 
     componentDidMount() {
-        try {
-            let newState = update(this.state, {
-                message: {$set: "Success!"}
-            });
-            this.setState(newState);
-        } catch (e) {
-            console.log("Error setting state: " + e.message);
-            this.setState({data: [], message: "Success from exception block"});
-        }
+        let newState = update(this.state, {
+            message: {$set: "Success!"}
+        });
+        this.setState(newState);
     }
 
     getItemsFromList = () => {
@@ -42,7 +36,7 @@ class SPScriptGetData extends React.Component<IProps, IState> {
         console.log("SPScriptGetData render");
         return (
             <div>
-                <SPScriptGetDataView getListItems={this.getItemsFromList} />
+                <PnpDataView getListItems={this.getItemsFromList} />
                 <DisplayResults data={this.state.data} message={this.state.message} />
             </div>
         );
