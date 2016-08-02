@@ -37,7 +37,7 @@ class SPScriptGetData extends React.Component<IProps, IState> {
         return (
             <div>
                 <PnpDataView getListItems={this.getItemsFromList} />
-                <DisplayResults data={this.state.data} message={this.state.message} />
+                <DisplayResults data={this.state.data} message={this.state.message} isWarning={false} />
             </div>
         );
     }

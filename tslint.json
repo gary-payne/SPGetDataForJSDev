@@ -34,7 +34,7 @@
       "check-else",
       "check-whitespace"
     ],
-    "quotemark": [true, "double"],
+    "quotemark": [false, "double"],
     "radix": true,
     "semicolon": false,
     "triple-equals": [true, "allow-null-check"],

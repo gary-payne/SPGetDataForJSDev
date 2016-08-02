@@ -13,11 +13,9 @@ var DisplayResults = (function (_super) {
     __extends(DisplayResults, _super);
     function DisplayResults(props) {
         _super.call(this, props);
-        console.log("DisplayResults constructor");
     }
     DisplayResults.prototype.render = function () {
-        console.log("DisplayResults render with message = '" + this.props.message + "'");
-        return (React.createElement(DisplayResults_View_1.default, {data: this.props.data, message: this.props.message}));
+        return (React.createElement(DisplayResults_View_1.default, {data: this.props.data, message: this.props.message, isWarning: this.props.isWarning}));
     };
     return DisplayResults;
 }(React.Component));

@@ -35,7 +35,7 @@ var SPScriptGetData = (function (_super) {
     };
     SPScriptGetData.prototype.render = function () {
         console.log("SPScriptGetData render");
-        return (React.createElement("div", null, React.createElement(PnPGetData_View_1.default, {getListItems: this.getItemsFromList}), React.createElement(DisplayResults_1.default, {data: this.state.data, message: this.state.message})));
+        return (React.createElement("div", null, React.createElement(PnPGetData_View_1.default, {getListItems: this.getItemsFromList}), React.createElement(DisplayResults_1.default, {data: this.state.data, message: this.state.message, isWarning: false})));
     };
     return SPScriptGetData;
 }(React.Component));
