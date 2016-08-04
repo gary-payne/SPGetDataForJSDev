@@ -1,4 +1,5 @@
 import * as React from "react";
+import { browserHistory } from "react-router";
 let update = require("react-addons-update");
 import { RestDao } from "SPScript"; //Need to add custom index.d.ts to SPScript module folder to resolve this name!
 import SPScriptGetDataView from "../views/SPScriptGetData_View";
@@ -35,6 +36,9 @@ class SPScriptGetData extends React.Component<IProps, IState> {
     }
 
     getItemsFromList = () => {
+        console.log(" ** Attempting to push to new route!!!");
+        browserHistory.push("spscript/spscript-getlistitems");
+        /*
         if (typeof _spPageContextInfo === "undefined" || typeof _spPageContextInfo.webAbsoluteUrl === "undefined") {
             let newState = update(this.state, {
                     message: {$set: "_spPageContextInfo is not defined - using hard coded test data!"},
@@ -56,6 +60,7 @@ class SPScriptGetData extends React.Component<IProps, IState> {
                 this.setState( newState );
             });
         }
+        */
     }
 
     getCurrentProfile = () => {
@@ -81,11 +86,20 @@ class SPScriptGetData extends React.Component<IProps, IState> {
         }
     }
 
+    selectOperation = (e) => {
+        console.log("SPScript - Selected '" + e.target.value + "'");
+        if (e.target.value === "getlistitems") {
+            this.getItemsFromList();
+        } else if (e.target.value === "getlistitems") {
+            this.getCurrentProfile();
+        }
+    }
+
     public render() {
         console.log("SPScriptGetData render");
         return (
             <div>
-                <SPScriptGetDataView getListItems={this.getItemsFromList} getProfile={this.getCurrentProfile} />
+                <SPScriptGetDataView selectOperation={this.selectOperation} />
                 <DisplayResults data={this.state.data} message={this.state.message} isWarning={this.state.showWarning} />
             </div>
         );

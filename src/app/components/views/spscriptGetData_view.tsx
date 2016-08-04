@@ -1,11 +1,16 @@
 import * as React from "react";
 
 class SPScriptGetDataView extends React.Component<any, any> {
+
     public render() {
         return (
             <div>
-                <button type="button" onClick={this.props.getListItems}>Get list items</button>
-                <button type="button" onClick={this.props.getProfile}>Get profile</button>
+                <select onChange={this.props.selectOperation}>
+                    <option value="">Select an operation...</option>
+                    <option value="getlistitems">Get list items</option>
+                    <option value="getprofile">Get profile</option>
+                </select>
+                {this.props.children}
             </div>
         );
     }

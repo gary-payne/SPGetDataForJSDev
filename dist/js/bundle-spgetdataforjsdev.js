@@ -8,6 +8,69 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var React = (typeof window !== "undefined" ? window['React'] : typeof global !== "undefined" ? global['React'] : null);
 var update = (typeof window !== "undefined" ? window['React_Addons_Update'] : typeof global !== "undefined" ? global['React_Addons_Update'] : null);
+var SPScriptGetListItems_View_1 = require("../views/SPScriptGetListItems_View");
+;
+;
+var SPScriptGetListItems = (function (_super) {
+    __extends(SPScriptGetListItems, _super);
+    function SPScriptGetListItems(props) {
+        _super.call(this, props);
+        this.getListItems = function (listName) {
+            console.log("SPScriptGetLIstItems.getListItems(): list name = '" + listName + "'");
+        };
+    }
+    SPScriptGetListItems.prototype.render = function () {
+        console.log("SPScriptGetListItems render");
+        return (React.createElement(SPScriptGetListItems_View_1.default, {getListItems: this.getListItems}));
+    };
+    return SPScriptGetListItems;
+}(React.Component));
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = SPScriptGetListItems;
+
+
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+
+},{"../views/SPScriptGetListItems_View":14}],2:[function(require,module,exports){
+(function (global){
+"use strict";
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var React = (typeof window !== "undefined" ? window['React'] : typeof global !== "undefined" ? global['React'] : null);
+var Default_View_1 = require("../views/Default_View");
+;
+;
+var DisplayResults = (function (_super) {
+    __extends(DisplayResults, _super);
+    function DisplayResults(props) {
+        _super.call(this, props);
+    }
+    DisplayResults.prototype.render = function () {
+        return (React.createElement(Default_View_1.default, null));
+    };
+    return DisplayResults;
+}(React.Component));
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = DisplayResults;
+
+
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+
+},{"../views/Default_View":9}],3:[function(require,module,exports){
+(function (global){
+"use strict";
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var React = (typeof window !== "undefined" ? window['React'] : typeof global !== "undefined" ? global['React'] : null);
+var update = (typeof window !== "undefined" ? window['React_Addons_Update'] : typeof global !== "undefined" ? global['React_Addons_Update'] : null);
 var DisplayResults_View_1 = require("../views/DisplayResults_View");
 ;
 ;
@@ -28,7 +91,7 @@ exports.default = DisplayResults;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"../views/DisplayResults_View":7}],2:[function(require,module,exports){
+},{"../views/DisplayResults_View":10}],4:[function(require,module,exports){
 (function (global){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
@@ -78,23 +141,26 @@ exports.default = SPScriptGetData;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"../views/PnPGetData_View":9,"./DisplayResults":1}],3:[function(require,module,exports){
+},{"../views/PnPGetData_View":12,"./DisplayResults":3}],5:[function(require,module,exports){
 (function (global){
 "use strict";
 var React = (typeof window !== "undefined" ? window['React'] : typeof global !== "undefined" ? global['React'] : null);
 var react_router_1 = (typeof window !== "undefined" ? window['ReactRouter'] : typeof global !== "undefined" ? global['ReactRouter'] : null);
 var ContentWrapper_view_1 = require("../views/ContentWrapper_view");
+var Default_1 = require("./Default");
 var SPScriptGetData_1 = require("./SPScriptGetData");
+var SPScriptGetListItems_1 = require("./SPScriptGetListItems");
 var PnPGetData_1 = require("./PnPGetData");
+var subHeader_view_1 = require("../views/subHeader_view");
 var PageNotFound = function () { return React.createElement("h1", null, "Could not find this page"); };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = (React.createElement(react_router_1.Router, null, React.createElement(react_router_1.Route, {path: "/", component: ContentWrapper_view_1.default}, React.createElement(react_router_1.IndexRoute, {component: SPScriptGetData_1.default}), React.createElement(react_router_1.Route, {path: "pnp", component: PnPGetData_1.default}), React.createElement(react_router_1.Route, {path: "*", component: PageNotFound}))));
+exports.default = (React.createElement(react_router_1.Router, {history: react_router_1.browserHistory}, React.createElement(react_router_1.Route, {path: "/", component: ContentWrapper_view_1.default}, React.createElement(react_router_1.IndexRoute, {component: Default_1.default}), React.createElement(react_router_1.Route, {path: "pnp", component: PnPGetData_1.default}), React.createElement(react_router_1.Route, {path: "spscript", component: subHeader_view_1.default}, React.createElement(react_router_1.IndexRoute, {component: SPScriptGetData_1.default}), React.createElement(react_router_1.Route, {path: "spscript-getlistitems", component: SPScriptGetListItems_1.default})), React.createElement(react_router_1.Route, {path: "*", component: PageNotFound}))));
 
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"../views/ContentWrapper_view":6,"./PnPGetData":2,"./SPScriptGetData":4}],4:[function(require,module,exports){
+},{"../views/ContentWrapper_view":8,"../views/subHeader_view":15,"./Default":2,"./PnPGetData":4,"./SPScriptGetData":6,"./SPScriptGetListItems":1}],6:[function(require,module,exports){
 (function (global){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
@@ -103,6 +169,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var React = (typeof window !== "undefined" ? window['React'] : typeof global !== "undefined" ? global['React'] : null);
+var react_router_1 = (typeof window !== "undefined" ? window['ReactRouter'] : typeof global !== "undefined" ? global['ReactRouter'] : null);
 var update = (typeof window !== "undefined" ? window['React_Addons_Update'] : typeof global !== "undefined" ? global['React_Addons_Update'] : null);
 var SPScript_1 = (typeof window !== "undefined" ? window['SPScript'] : typeof global !== "undefined" ? global['SPScript'] : null); //Need to add custom index.d.ts to SPScript module folder to resolve this name!
 var SPScriptGetData_View_1 = require("../views/SPScriptGetData_View");
@@ -117,26 +184,31 @@ var SPScriptGetData = (function (_super) {
         this.testitemdata = [{ "Id": 1, "Title": "A", "ANumber": 1.13, "ID": 1, "Created": "2016-07-27T00:52:59Z", "AuthorId": 9 }];
         this.testprofiledata = [{ "PreferredName": "Gary Payne", "WorkPhone": "0212660753", "Department": "", "SPS-JobTitle": "Owner" }];
         this.getItemsFromList = function () {
+            console.log(" ** Attempting to push to new route!!!");
+            react_router_1.browserHistory.push("spscript/spscript-getlistitems");
+            /*
             if (typeof _spPageContextInfo === "undefined" || typeof _spPageContextInfo.webAbsoluteUrl === "undefined") {
-                var newState = update(_this.state, {
-                    message: { $set: "_spPageContextInfo is not defined - using hard coded test data!" },
-                    data: { $set: _this.testitemdata },
-                    showWarning: { $set: true }
+                let newState = update(this.state, {
+                        message: {$set: "_spPageContextInfo is not defined - using hard coded test data!"},
+                        data: {$set: this.testitemdata},
+                        showWarning: {$set: true}
+                    }
+                );
+                this.setState(newState);
+            } else {
+                const dao = new RestDao(_spPageContextInfo.webAbsoluteUrl);
+                const dataList = dao.lists("TestData");
+                dataList.getItems().then( (results) => {
+                    let newState = update(this.state, {
+                            message: {$set: "Retrieved items from the list"},
+                            data: {$set: results},
+                            showWarning: {$set: false}
+                        }
+                    );
+                    this.setState( newState );
                 });
-                _this.setState(newState);
             }
-            else {
-                var dao = new SPScript_1.RestDao(_spPageContextInfo.webAbsoluteUrl);
-                var dataList = dao.lists("TestData");
-                dataList.getItems().then(function (results) {
-                    var newState = update(_this.state, {
-                        message: { $set: "Retrieved items from the list" },
-                        data: { $set: results },
-                        showWarning: { $set: false }
-                    });
-                    _this.setState(newState);
-                });
-            }
+            */
         };
         this.getCurrentProfile = function () {
             if (typeof _spPageContextInfo === "undefined" || typeof _spPageContextInfo.webAbsoluteUrl === "undefined") {
@@ -157,6 +229,15 @@ var SPScriptGetData = (function (_super) {
                     });
                     _this.setState(newState);
                 });
+            }
+        };
+        this.selectOperation = function (e) {
+            console.log("SPScript - Selected '" + e.target.value + "'");
+            if (e.target.value === "getlistitems") {
+                _this.getItemsFromList();
+            }
+            else if (e.target.value === "getlistitems") {
+                _this.getCurrentProfile();
             }
         };
         console.log("SPScriptGetData constructor");
@@ -180,7 +261,7 @@ var SPScriptGetData = (function (_super) {
     };
     SPScriptGetData.prototype.render = function () {
         console.log("SPScriptGetData render");
-        return (React.createElement("div", null, React.createElement(SPScriptGetData_View_1.default, {getListItems: this.getItemsFromList, getProfile: this.getCurrentProfile}), React.createElement(DisplayResults_1.default, {data: this.state.data, message: this.state.message, isWarning: this.state.showWarning})));
+        return (React.createElement("div", null, React.createElement(SPScriptGetData_View_1.default, {selectOperation: this.selectOperation}), React.createElement(DisplayResults_1.default, {data: this.state.data, message: this.state.message, isWarning: this.state.showWarning})));
     };
     return SPScriptGetData;
 }(React.Component));
@@ -191,7 +272,7 @@ exports.default = SPScriptGetData;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"../views/SPScriptGetData_View":10,"./DisplayResults":1}],5:[function(require,module,exports){
+},{"../views/SPScriptGetData_View":13,"./DisplayResults":3}],7:[function(require,module,exports){
 (function (global){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
@@ -277,7 +358,7 @@ exports.default = JSONDisplay;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{}],6:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 (function (global){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
@@ -305,7 +386,33 @@ exports.default = ContentWrapper;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"./Navigation_View":8}],7:[function(require,module,exports){
+},{"./Navigation_View":11}],9:[function(require,module,exports){
+(function (global){
+"use strict";
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var React = (typeof window !== "undefined" ? window['React'] : typeof global !== "undefined" ? global['React'] : null);
+var DefaultView = (function (_super) {
+    __extends(DefaultView, _super);
+    function DefaultView() {
+        _super.apply(this, arguments);
+    }
+    DefaultView.prototype.render = function () {
+        return (React.createElement("div", null, "Select a data retrieval library from the tabs above"));
+    };
+    return DefaultView;
+}(React.Component));
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = DefaultView;
+
+
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+
+},{}],10:[function(require,module,exports){
 (function (global){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
@@ -338,14 +445,14 @@ exports.default = DisplayResultsView;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"./jsondisplay":5}],8:[function(require,module,exports){
+},{"./jsondisplay":7}],11:[function(require,module,exports){
 (function (global){
 "use strict";
 var React = (typeof window !== "undefined" ? window['React'] : typeof global !== "undefined" ? global['React'] : null);
 var react_router_1 = (typeof window !== "undefined" ? window['ReactRouter'] : typeof global !== "undefined" ? global['ReactRouter'] : null);
 //A stateless functional component
 function default_1(props) {
-    return (React.createElement("div", {className: "spgetdata_navigation ms-NavBar"}, React.createElement("ul", {className: "ms-NavBar-items"}, React.createElement("li", {className: "ms-NavBar-item"}, React.createElement(react_router_1.Link, {to: "/", className: "ms-NavBar-link"}, "SPScript")), React.createElement("li", {className: "ms-NavBar-item"}, React.createElement(react_router_1.Link, {to: "pnp", className: "ms-NavBar-link"}, "PnP")))));
+    return (React.createElement("div", {className: "spgetdata_navigation ms-NavBar"}, React.createElement("ul", {className: "ms-NavBar-items"}, React.createElement("li", {className: "ms-NavBar-item"}, React.createElement(react_router_1.Link, {to: "pnp", className: "ms-NavBar-link"}, "PnP")), React.createElement("li", {className: "ms-NavBar-item"}, React.createElement(react_router_1.Link, {to: "spscript", className: "ms-NavBar-link"}, "SPScript")))));
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = default_1;
@@ -354,7 +461,7 @@ exports.default = default_1;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{}],9:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 (function (global){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
@@ -380,7 +487,7 @@ exports.default = PnPGetDataView;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{}],10:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 (function (global){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
@@ -395,7 +502,7 @@ var SPScriptGetDataView = (function (_super) {
         _super.apply(this, arguments);
     }
     SPScriptGetDataView.prototype.render = function () {
-        return (React.createElement("div", null, React.createElement("button", {type: "button", onClick: this.props.getListItems}, "Get list items"), React.createElement("button", {type: "button", onClick: this.props.getProfile}, "Get profile")));
+        return (React.createElement("div", null, React.createElement("select", {onChange: this.props.selectOperation}, React.createElement("option", {value: ""}, "Select an operation..."), React.createElement("option", {value: "getlistitems"}, "Get list items"), React.createElement("option", {value: "getprofile"}, "Get profile")), this.props.children));
     };
     return SPScriptGetDataView;
 }(React.Component));
@@ -406,7 +513,72 @@ exports.default = SPScriptGetDataView;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{}],11:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
+(function (global){
+"use strict";
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var React = (typeof window !== "undefined" ? window['React'] : typeof global !== "undefined" ? global['React'] : null);
+;
+;
+var SPScriptGetListItemsView = (function (_super) {
+    __extends(SPScriptGetListItemsView, _super);
+    function SPScriptGetListItemsView(props) {
+        var _this = this;
+        _super.call(this, props);
+        this.listnameValueChangeHandler = function (e) {
+            _this.setState({ listname: e.target.value });
+        };
+        this.getListItems = function (e) {
+            _this.props.getListItems(_this.state.listname);
+        };
+        console.log("SPScriptGetData constructor");
+        this.state = {
+            listname: "TestData"
+        };
+    }
+    SPScriptGetListItemsView.prototype.render = function () {
+        return (React.createElement("div", null, React.createElement("input", {type: "text", value: this.state.listname, onChange: this.listnameValueChangeHandler}), React.createElement("button", {type: "button", onClick: this.getListItems}, "Get list items")));
+    };
+    return SPScriptGetListItemsView;
+}(React.Component));
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = SPScriptGetListItemsView;
+
+
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+
+},{}],15:[function(require,module,exports){
+(function (global){
+"use strict";
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var React = (typeof window !== "undefined" ? window['React'] : typeof global !== "undefined" ? global['React'] : null);
+var SubHeaderView = (function (_super) {
+    __extends(SubHeaderView, _super);
+    function SubHeaderView() {
+        _super.apply(this, arguments);
+    }
+    SubHeaderView.prototype.render = function () {
+        return (React.createElement("div", null, React.createElement("h3", null, "Select an Operation"), this.props.children));
+    };
+    return SubHeaderView;
+}(React.Component));
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = SubHeaderView;
+
+
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+
+},{}],16:[function(require,module,exports){
 (function (global){
 "use strict";
 var ReactDom = (typeof window !== "undefined" ? window['ReactDOM'] : typeof global !== "undefined" ? global['ReactDOM'] : null);
@@ -419,5 +591,5 @@ window.onload = function () {
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"./components/viewcontainers/router":3}]},{},[11])
+},{"./components/viewcontainers/router":5}]},{},[16])
 //# sourceMappingURL=bundle-spgetdataforjsdev.js.map
